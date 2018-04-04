@@ -1,3 +1,5 @@
+## 这是一个React 练习项目，麻雀虽小五脏俱全，练练手
+
 ## react-my-app
 - react react-router4 redux react-redux
 ## 初始化package.json
