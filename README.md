@@ -1,3 +1,5 @@
+## 这是一个React 练习项目，麻雀虽小五脏俱全，练练手
+
 ## react-my-app
 - react react-router4 redux react-redux
 ## 初始化package.json
@@ -57,5 +59,8 @@ $ yarn add swipe-js-iso react-swipe
 
 ## 配置多入口 verdor
 - 抽离第三方库
+<<<<<<< HEAD
 
 npm run-script build -> dist
+=======
+>>>>>>> 3d4f7e126c8250d04878c0b44dea47bdcb2e69e5
