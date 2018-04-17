@@ -57,3 +57,5 @@ $ yarn add swipe-js-iso react-swipe
 
 ## 配置多入口 verdor
 - 抽离第三方库
+
+npm run-script build -> dist

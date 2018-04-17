@@ -4,14 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --port 3002 --open --progress --colors",
+    "start": "webpack-dev-server --port 3002 --open --progress --colors --mode=development",
     "build": "webpack -p",
+    "prod": "webpack-dev-server --port 3002 --open --progress --colors --mode=production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "antd": "^3.4.0",
     "express": "^4.16.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
