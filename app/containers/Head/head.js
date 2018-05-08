@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Menu, Icon} from 'antd';
 import {connect} from 'react-redux';
+import { Carousel } from 'antd';
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 

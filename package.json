@@ -13,7 +13,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "antd": "^3.4.0",
+    "antd": "^3.4.5",
+    "babel-plugin-import": "^1.7.0",
     "express": "^4.16.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -39,5 +40,8 @@
     "style-loader": "^0.20.3",
     "webpack-cli": "^2.0.13",
     "whatwg-fetch": "^2.0.3"
+  },
+  "theme": {
+    "primary-color": "#1DA57A"
   }
 }
