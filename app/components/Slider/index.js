@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Carousel} from 'antd';
+import './index.less'
 function onChange(a, b, c) {
     console.log(a, b, c);
 }
@@ -13,7 +14,7 @@ export default class Slider extends React.Component {
     render() {
 
         return (
-            <div class="carousel">
+            <div className="carousel">
             <Carousel afterChange={onChange}>
                 <div>
                     <ul>
