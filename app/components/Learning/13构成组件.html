@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React</title>
+    <script src="reactjs16.2.0/react.development.js"></script>
+    <script src="reactjs16.2.0/react-dom.development.js"></script>
+    <script src="reactjs16.2.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+		function Welcome(props) {
+		  return <h1>Hello, {props.name}</h1>;
+		}
+		/*
+		组件可以在其输出中引用其他组件。可以对任何细节级别使用相同的组件抽象。
+		一个按钮，一个窗体，一个对话框，一个屏幕：在React应用程序中，所有这些都通常表示为组件。
+		*/
+		function App(){
+		  return(
+			<div>
+			  <Welcome name="张三" />
+			  <Welcome name="李四" />
+			  <Welcome name="王五" />
+			</div>
+		  );
+		}
+		ReactDOM.render(
+		  <App/>,
+		  document.getElementById('example')
+		);
+    </script>
+  </body>
+</html>

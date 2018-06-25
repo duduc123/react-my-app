@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React</title>
+    <script src="reactjs16.2.0/react.development.js"></script>
+    <script src="reactjs16.2.0/react-dom.development.js"></script>
+    <script src="reactjs16.2.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+		var posts=[
+		  {id: 1, title: '标题1', content: '内容1'},
+		  {id: 2, title: '标题2', content: '内容2'}
+		];
+		function Blog(props){
+		  var sidebar=(<ul>{props.posts.map((post)=><li key={post.id}>{post.title}</li>)}</ul>);
+		  var content=props.posts.map((post)=>
+			<div key={post.id}>
+			  <h3>{post.title}</h3>
+			  <p>{post.content}</p>
+			</div>
+		  );
+		  return (<div>{sidebar}<hr />{content}</div>);
+		}
+		ReactDOM.render(
+		  <Blog posts={posts} />,
+		  document.getElementById('example')
+		);
+    </script>
+  </body>
+</html>

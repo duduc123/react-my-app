@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React</title>
+    <script src="reactjs16.2.0/react.development.js"></script>
+    <script src="reactjs16.2.0/react-dom.development.js"></script>
+    <script src="reactjs16.2.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+		/*
+		部分UI中的JavaScript错误不应该破坏整个应用程序。为了解决React用户的这个问题，React 16引入了一个“错误边界”的新概念。
+		*/
+		class MyComponent extends React.Component{
+		  constructor(props){
+			super(props);
+			this.state={error: null};
+		  }
+		  handleClick=()=>{
+			try{
+				//语法错误
+				alert1111('111');
+			}catch (error){
+			  this.setState({error});
+			}
+		  }
+		  render(){
+			if (this.state.error) return <h1>Caught an error.</h1>
+			return <div onClick={this.handleClick}>Click Me</div>
+		  }
+		}
+		ReactDOM.render(
+		  <MyComponent />,
+		  document.getElementById('example')
+		);
+    </script>
+  </body>
+</html>

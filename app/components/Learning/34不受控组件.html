@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React</title>
+    <script src="reactjs16.2.0/react.development.js"></script>
+    <script src="reactjs16.2.0/react-dom.development.js"></script>
+    <script src="reactjs16.2.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+		/*
+		在大多数情况下，建议使用受控组件来实现表单。
+		在受控组件中，表单数据由React组件处理。
+		另一种选择是不受控制的组件，其中表单数据由DOM本身处理。
+		*/
+		class NameForm extends React.Component{
+		  constructor(props){
+			super(props);
+			this.handleSubmit=this.handleSubmit.bind(this);
+		  }
+		  handleSubmit(e){
+		  	{/*传递name外部引用*/}
+			alert('姓名=' + this.name.value);
+			e.preventDefault();
+		  }
+		  render(){
+			return(
+			  <form onSubmit={this.handleSubmit}>
+			  	{/*要编写一个不受控制的组件，而不是为每个状态更新编写一个事件处理程序，可以使用ref从DOM获取表单值*/}
+				<label>姓名:<input type="text" ref={(namevalue)=>this.name=namevalue} /></label>
+				<input type="submit" value="提交" />
+			  </form>
+			);
+		  }
+		}
+		ReactDOM.render(
+		  <NameForm />,
+		  document.getElementById('example')
+		);
+    </script>
+  </body>
+</html>

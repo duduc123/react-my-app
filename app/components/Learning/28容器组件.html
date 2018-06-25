@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React</title>
+    <script src="reactjs16.2.0/react.development.js"></script>
+    <script src="reactjs16.2.0/react-dom.development.js"></script>
+    <script src="reactjs16.2.0/babel.min.js"></script>
+    <style type="text/css">
+	<!--
+	.FancyBorder{padding: 10px 10px;border: 10px solid;}
+	.FancyBorder-blue{border-color: blue;}
+	.Dialog-title{margin: 0;font-family: sans-serif;}
+	.Dialog-message{font-size: larger;}
+	-->
+	</style>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+		/*
+		有些组件不提前知道他们的孩子。这对于代表通用“盒子”的组件（如边栏或对话框）尤其常见。
+		这些组件使用特殊的孩子道具将孩子元素直接传递到他们的输出中：
+		<FancyBorder>JSX标签内的任何内容都将作为孩子道具传递到FancyBorder组件。
+		由于FancyBorder在<div>内呈现{props.children}，传递的元素出现在最终的输出中。
+		*/
+		function FancyBorder(props){
+		  return(
+			<div className={'FancyBorder FancyBorder-' + props.color}>
+			  {props.children}
+			</div>
+		  );
+		}
+		function WelcomeDialog(){
+		  return (
+			<FancyBorder color="blue">
+			  <h1 className="Dialog-title">欢迎</h1>
+			  <p className="Dialog-message">访问我们的空间!</p>
+			</FancyBorder>
+		  );
+		}
+		ReactDOM.render(
+		  <WelcomeDialog />,
+		  document.getElementById('example')
+		);
+    </script>
+  </body>
+</html>

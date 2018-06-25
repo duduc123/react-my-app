@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React</title>
+    <script src="reactjs16.2.0/react.development.js"></script>
+    <script src="reactjs16.2.0/react-dom.development.js"></script>
+    <script src="reactjs16.2.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+		//JSX允许在模板中插入数组，数组会自动展开所有成员
+		var arr=[
+		  	<h1>JSX</h1>,
+			<h2>欢迎使用React</h2>
+		];
+		ReactDOM.render(
+			<div>{arr}</div>,
+			document.getElementById('example')
+		);
+    </script>
+  </body>
+</html>

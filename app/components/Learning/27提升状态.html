@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React</title>
+    <script src="reactjs16.2.0/react.development.js"></script>
+    <script src="reactjs16.2.0/react-dom.development.js"></script>
+    <script src="reactjs16.2.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+		//通常几个组件需要反映相同的变化数据。建议将共享状态提升至最接近的共同祖先
+		function BoilingVerdict(props){
+		  if(props.celsius >= 100) return <p>水开了.</p>;
+		  else return <p>水没有开.</p>;
+		}
+		class Calculator extends React.Component{
+		  constructor(props){
+			super(props);
+			this.handleChange = this.handleChange.bind(this);
+			this.state = {temperature: ''};//temperature在组件中共享状态值
+		  }
+		  handleChange(e){this.setState({temperature: e.target.value});}
+		  render(){
+			var temperature=this.state.temperature;
+			return (
+			  <fieldset>
+				<legend>请输入温度值:</legend>
+				<input value={temperature} onChange={this.handleChange} />
+				<BoilingVerdict celsius={parseFloat(temperature)} />
+			  </fieldset>
+			);
+		  }
+		}
+		ReactDOM.render(
+		  <Calculator />,
+		  document.getElementById('example')
+		);
+    </script>
+  </body>
+</html>

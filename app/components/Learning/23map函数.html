@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React</title>
+    <script src="reactjs16.2.0/react.development.js"></script>
+    <script src="reactjs16.2.0/react-dom.development.js"></script>
+    <script src="reactjs16.2.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+		var numbers=[1, 2, 3, 4, 5];
+		//方法1
+		/*var listItems=numbers.map((numbers)=><li key={numbers.toString()}>{numbers}</li>);
+		ReactDOM.render(
+		  <ul>{listItems}</ul>,
+		  document.getElementById('example')
+		);*/
+		//方法2
+		/*function NumberList(props){
+		  var n=props.numbers;
+		  var listItems=n.map((n1)=><li key={n1.toString()}>{n1}</li>);
+		  return(<ul>{listItems}</ul>);
+		}
+		ReactDOM.render(
+		  <NumberList numbers={numbers} />,
+		  document.getElementById('example')
+		);*/
+		//方法3
+		/*function ListItem(props){
+		  return <li>{props.value}</li>;
+		}
+		function NumberList(props){
+		  var n=props.numbers;
+		  var listItems=n.map((n1)=><ListItem key={n1.toString()} value={n1} />);
+		  return(<ul>{listItems}</ul>);
+		}
+		ReactDOM.render(
+		  <NumberList numbers={numbers} />,
+		  document.getElementById('example')
+		);*/
+		//方法4
+		function ListItem(props){
+		  return <li>{props.value}</li>;
+		}
+		function NumberList(props){
+		  var numbers=props.numbers;
+		  return(
+			<ul>
+			  {numbers.map((number) =>
+				<ListItem key={number.toString()} value={number} />
+			  )}
+			</ul>
+		  );
+		}
+		ReactDOM.render(
+		  <NumberList numbers={numbers} />,
+		  document.getElementById('example')
+		);
+    </script>
+  </body>
+</html>

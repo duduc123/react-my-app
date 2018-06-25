@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React</title>
+    <script src="reactjs16.2.0/react.development.js"></script>
+    <script src="reactjs16.2.0/react-dom.development.js"></script>
+    <script src="reactjs16.2.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+		/*
+		1.当<Clock />传递给ReactDOM.render()时，React调用Clock组件的构造函数。
+		由于Clock需要显示当前时间，因此它会使用包含当前时间的对象初始化this.state。我们稍后将更新这个状态。
+		2.React然后调用Clock组件的render()方法。这就是React如何学习屏幕上应显示的内容。
+		然后React更新DOM以匹配时钟的渲染输出。
+		3.当Clock输出插入到DOM中时，React调用componentDidMount()生命周期钩子。
+		在它里面，Clock组件要求浏览器设置一个定时器，每秒调用一次该组件的tick()方法。
+		4.每秒钟浏览器调用tick()方法。在它里面，Clock组件通过调用setState()和包含当前时间的对象来调度UI更新。
+		在setState()调用后，React知道状态已经改变，并再次调用render()方法来了解屏幕上应显示的内容。
+		这一次，render()方法中的this.state.date将会不同，所以渲染输出将包含更新的时间。 React会相应地更新DOM。
+		5.如果Clock组件已经从DOM中移除，React调用componentWillUnmount()生命周期hook，以便定时器停止。
+		*/
+		class Clock extends React.Component{
+		  constructor(props){
+			super(props);
+			//this.state只能在构造函数中使用，外部直接调用将产生错误,外部只能通过this.setState来改变状态
+			this.state = {date: new Date()};
+		  }
+		  /*如果state包含多个无依赖的变量
+		  constructor(props) {
+			super(props);
+			this.state = {
+			  posts: [],
+			  comments: []
+			};
+		  }
+		  componentDidMount(){
+		    //用独立的setState分别单独更新它们
+			fetchPosts().then(response=>{
+			  this.setState({
+				posts: response.posts
+			  });
+			});
+			fetchComments().then(response=>{
+			  this.setState({
+				comments: response.comments
+			  });
+			});
+		  }
+		  */
+		  //挂载定时器
+		  componentDidMount(){
+			this.timerID = setInterval(
+			  //lambda表达式
+			  ()=>this.tick(),1000
+			);
+		  }
+		  //卸载定时器
+		  componentWillUnmount(){
+			clearInterval(this.timerID);
+		  }
+		  tick(){
+			this.setState({
+			  date: new Date()
+			  /*
+			  this.state和this.props是异步操作的，不能同时修订
+			  // Wrong
+			  this.setState({
+			    counter: this.state.counter + this.props.increment,
+			  });
+			  // Correct
+			  this.setState((prevState, props) => ({
+  				counter: prevState.counter + props.increment
+			  }));
+			  // Correct
+			  this.setState(function(prevState, props) {
+			    return {
+				  counter: prevState.counter + props.increment
+			    };
+			  });
+			  */
+			});
+		  }
+		  render(){
+			return (
+			  <div>
+				<h1>Hello, world!</h1>
+				<h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+			  </div>
+			);
+		  }
+		}
+		/*
+		组件是“自顶向下”或“单向”数据流。 任何状态总是由某个特定组件拥有，
+		并且从该状态派生的任何数据或UI只能影响树中旗下的组件。
+		所有组件都是真正隔离的，创建一个呈现三个<Clock>的App组件
+		*/
+		function App() {
+		  return (
+			<div>
+			  <Clock />
+			  <Clock />
+			  <Clock />
+			</div>
+		  );
+		}
+		ReactDOM.render(
+		  <App />,
+		  document.getElementById('example')
+		);
+    </script>
+  </body>
+</html>

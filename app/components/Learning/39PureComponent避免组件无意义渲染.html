@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React</title>
+    <script src="reactjs16.2.0/react.development.js"></script>
+    <script src="reactjs16.2.0/react-dom.development.js"></script>
+    <script src="reactjs16.2.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+		/*
+		React提供了一个帮助器判断刷新 - 只是从React.PureComponent继承而来
+		它只是进行浅层比较，如果有父子级等复杂结构则无效
+		*/
+		class CounterButton extends React.PureComponent{
+		  constructor(props) {
+			super(props);
+			this.state = {count: 1};
+		  }
+		  render(){
+			return(
+			  <button color={this.props.color} onClick={()=>this.setState(state=>({count: state.count + 1}))}>
+				Count: {this.state.count}
+			  </button>
+			);
+		  }
+		}
+		ReactDOM.render(
+		  <CounterButton />,
+		  document.getElementById('example')
+		);
+    </script>
+  </body>
+</html>

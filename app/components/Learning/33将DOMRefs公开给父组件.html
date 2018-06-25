@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React</title>
+    <script src="reactjs16.2.0/react.development.js"></script>
+    <script src="reactjs16.2.0/react-dom.development.js"></script>
+    <script src="reactjs16.2.0/babel.min.js"></script>
+    <style type="text/css">
+	<!--
+	.FancyBorder{padding: 10px 10px;border: 10px solid;}
+	.FancyBorder-blue{border-color: blue;}
+	-->
+	</style>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+		/*
+		在极少数情况下，可能想要从父组件访问子节点的DOM节点。
+		通常不建议这样做，因为它打破了组件封装，但它偶尔可用于触发焦点或测量子DOM节点的大小或位置。
+		ref回调首先由祖父指定。它作为一个名为inputRef的常规道具传递给Parent，并且Parent也将它作为道具传递给CustomTextInput。
+		最后CustomTextInput读取inputRef属性，并将传递的函数作为ref属性附加到<input>。 
+		因此，祖父母中的this.inputElement将被设置为与CustomTextInput中的<input>元素对应的DOM节点。
+		*/
+		function CustomTextInput(props){
+		  return(
+		      <div className={'FancyBorder FancyBorder-blue'}><input ref={props.inputRef} /></div>
+          );
+		}
+		function Parent(props){
+		  return(
+		      <div className={'FancyBorder FancyBorder-blue'}>Parent Call Child:<CustomTextInput inputRef={props.inputRef} /></div>
+          );
+		}
+		class Grandparent extends React.Component {
+		  render(){
+		      return(<div className={'FancyBorder FancyBorder-blue'}>Grandfather call Parent:<Parent inputRef={el=>this.inputElement=el}/></div>);
+		  }
+		}
+		ReactDOM.render(
+		  <Grandparent />,
+		  document.getElementById('example')
+		);
+    </script>
+  </body>
+</html>

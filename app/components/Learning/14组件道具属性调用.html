@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React</title>
+    <script src="reactjs16.2.0/react.development.js"></script>
+    <script src="reactjs16.2.0/react-dom.development.js"></script>
+    <script src="reactjs16.2.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+		function Clock(props){
+		  //组件道具定义日期类型的date属性
+		  return (
+			<div>
+			  <h1>Hello, world!</h1>
+			  <h2>It is {props.date.toLocaleTimeString()}.</h2>
+			</div>
+		  );
+		}
+		/*
+		通过五个步骤将功能组件转换为类：
+		1.创建一个扩展了React.Component的ES6类，名称相同。
+		2.给它添加一个名为render()的空方法。
+		3.将函数的主体移动到render()方法中。
+		4.在render()主体中用this.props替换道具。
+		5.删除剩余的空函数声明。
+		class Clock extends React.Component {
+		  render(){
+			return (
+			  <div>
+				<h1>Hello, world!</h1>
+				<h2>It is {this.props.date.toLocaleTimeString()}.</h2>
+			  </div>
+			);
+		  }
+		}
+		*/
+		function tick(){
+		  //组件道具属性调用并赋值当天时间
+		  ReactDOM.render(
+			<Clock date={new Date()}/>,
+			document.getElementById('example')
+		  );
+		}
+		setInterval(tick, 1000);
+    </script>
+  </body>
+</html>

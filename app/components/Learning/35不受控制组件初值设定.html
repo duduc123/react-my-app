@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React</title>
+    <script src="reactjs16.2.0/react.development.js"></script>
+    <script src="reactjs16.2.0/react-dom.development.js"></script>
+    <script src="reactjs16.2.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+		/*
+		在React渲染生命周期中，表单元素上的值属性将覆盖DOM中的值。 
+		对于不受控制的组件，通常希望React指定初始值，但让后续更新不受控制。 
+		为了处理这种情况，你可以指定一个defaultValue属性而不是value。
+		*/
+		class NameForm extends React.Component{
+		  constructor(props){
+			super(props);
+			this.handleSubmit=this.handleSubmit.bind(this);
+		  }
+		  handleSubmit(e){
+		  	{/*传递name外部引用*/}
+			alert('姓名=' + this.name.value);
+			e.preventDefault();
+		  }
+		  render(){
+			return(
+			  <form onSubmit={this.handleSubmit}>
+			  	{/*要编写一个不受控制的组件，而不是为每个状态更新编写一个事件处理程序，可以使用ref从DOM获取表单值*/}
+				<label>姓名:<input type="text" defaultValue='张三' ref={(namevalue)=>this.name=namevalue} /></label>
+				<input type="submit" value="提交" />
+			  </form>
+			);
+		  }
+		}
+		ReactDOM.render(
+		  <NameForm />,
+		  document.getElementById('example')
+		);
+    </script>
+  </body>
+</html>

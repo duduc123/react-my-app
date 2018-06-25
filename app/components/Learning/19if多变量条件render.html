@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React</title>
+    <script src="reactjs16.2.0/react.development.js"></script>
+    <script src="reactjs16.2.0/react-dom.development.js"></script>
+    <script src="reactjs16.2.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+		class LoginControl extends React.Component{
+		  constructor(props){
+			super(props);
+			this.handleLoginClick=this.handleLoginClick.bind(this);
+			this.handleLogoutClick=this.handleLogoutClick.bind(this);
+			this.state={isLoggedIn: false};
+		  }
+		  handleLoginClick(){this.setState({isLoggedIn: true});}
+		  handleLogoutClick(){this.setState({isLoggedIn: false});}
+		  render() {
+			var isLoggedIn=this.state.isLoggedIn;
+			var button = null;
+			if(isLoggedIn) button=<LogoutButton onClick={this.handleLogoutClick} />;
+			else button=<LoginButton onClick={this.handleLoginClick} />;
+			return(
+			  <div>
+				<Greeting isLoggedIn={isLoggedIn} />
+				{button}
+			  </div>
+			);
+		  }
+		}
+		function UserGreeting(props){return <h1>欢迎回来!</h1>;}
+		function GuestGreeting(props){return <h1>请登录!</h1>;}
+		function Greeting(props){
+		  var isLoggedIn=props.isLoggedIn;
+		  if(isLoggedIn) return <UserGreeting />;
+		  else return <GuestGreeting />;
+		}
+		function LoginButton(props){
+		  return(<button onClick={props.onClick}>登录</button>);
+		}
+		function LogoutButton(props) {
+		  return(<button onClick={props.onClick}>注销</button>);
+		}
+		ReactDOM.render(
+		  <LoginControl />,
+		  document.getElementById('example')
+		);
+    </script>
+  </body>
+</html>

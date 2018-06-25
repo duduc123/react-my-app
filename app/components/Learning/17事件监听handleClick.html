@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React</title>
+    <script src="reactjs16.2.0/react.development.js"></script>
+    <script src="reactjs16.2.0/react-dom.development.js"></script>
+    <script src="reactjs16.2.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+		/*
+		<a href="#" onclick="console.log('The link was clicked.'); return false">
+		  Click me
+		</a>
+		js的return false可以防止打开一个新的页面
+		function ActionLink(){
+		  function handleClick(e){
+			e.preventDefault();//react的e.preventDefault()替代return false防止打开一个新的页面
+			console.log('The link was clicked.');
+		  }
+		  return(
+			<a href="#" onClick={handleClick}>
+			  Click me
+			</a>
+		  );
+		}
+		*/
+		class Toggle extends React.Component{
+		  constructor(props){
+			super(props);
+			this.state = {isToggleOn: true};
+			//绑定在回调中必须声明
+			this.handleClick = this.handleClick.bind(this,'');//id可定义任意字符串,其他类型参数此处无需绑定回调
+		  }
+		  handleClick(e,id,age,salary){
+		  	alert(id);
+			alert(age);
+			alert(salary);
+			this.setState(prevState=>({
+			  isToggleOn: !prevState.isToggleOn
+			}));
+		  }
+		  render(){
+			return(
+			    <button onClick={this.handleClick.bind(this,'txtFieldId',200,100.5)}>
+                    {this.state.isToggleOn?'ON':'OFF'}
+                </button>);
+		  }
+		}
+		ReactDOM.render(
+		  <Toggle />,
+		  document.getElementById('example')
+		);
+    </script>
+  </body>
+</html>

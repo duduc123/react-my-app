@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React</title>
+    <script src="reactjs16.2.0/react.development.js"></script>
+    <script src="reactjs16.2.0/react-dom.development.js"></script>
+    <script src="reactjs16.2.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+		class Info extends React.Component {
+		  constructor(props) {
+			super(props);
+			this.state={isMarried: true,age: 20};
+			this.handleInputChange = this.handleInputChange.bind(this);
+		  }
+		  //当需要处理多个受控输入元素时，可以为每个元素添加一个name属性，
+          // 并让处理函数根据event.target.name的值选择要执行的操作。
+		  //这样只需要一个change函数
+		  handleInputChange(event) {
+			var target=event.target;
+			//当控件为checkbox时默认为勾选状态,否则为该控件的value值
+			var value=target.type==='checkbox'?target.checked:target.value;
+			var name=target.name;
+			//使用ES6语法来更新与给定输入名称对应的状态键
+			this.setState({[name]: value});
+			//ES5语法
+			/*var partialState={};
+			partialState[name]=value;
+			this.setState(partialState);*/
+		  }
+		  render(){
+			return(
+			  <form>
+				<label>婚否:<input name="isMarried"
+                                 type="checkbox"
+                                 checked={this.state.isMarried}
+                                 onChange={this.handleInputChange} /></label>
+				<br />
+				<label>年龄:<input name="age"
+                                 type="number"
+                                 value={this.state.age}
+                                 onChange={this.handleInputChange} /></label>
+				<br />
+				{/*{null}代表空值*/}
+				<label>备注:<input name="memo"
+                                 type="text" value={null}
+                                 onChange={this.handleInputChange} /></label>
+			  </form>
+			);
+		  }
+		}
+		ReactDOM.render(
+		  <Info />,
+		  document.getElementById('example')
+		);
+    </script>
+  </body>
+</html>

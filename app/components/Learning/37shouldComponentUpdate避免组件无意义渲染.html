@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React</title>
+    <script src="reactjs16.2.0/react.development.js"></script>
+    <script src="reactjs16.2.0/react-dom.development.js"></script>
+    <script src="reactjs16.2.0/babel.min.js"></script>
+    <script src="reactjs16.2.0/underscore-min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+		class Welcome extends React.Component{
+		  constructor(props){
+			super(props);
+			this.state={name: 'sandra'};
+		  }
+		  /*
+		  state在某些时候不想它渲染，偏偏react非常智能的帮我们重复渲染。
+		  比如最常见的就是传递的对象为空，组件依旧渲染了一次或者多次。
+		  shouldComponentUpdate是react提供的生命周期函数，他发生在接收到新的props的时候
+		  */
+		  shouldComponentUpdate(nextProps, nextState){
+		  	//引用underscore-min.js的isEqual递归比较
+		  	return !isEqual(nextProps, this.props) || !isEqual(nextState, this.state)
+		  }
+		  render(){
+			return <h1>name={this.state.name},title={this.props.title}</h1>
+		  }
+		}
+		ReactDOM.render(
+		  <Welcome title='abc'/>,
+		  document.getElementById('example')
+		);
+    </script>
+  <!--
+		使用immutable.js是另一种廉价的方法
+		1.<script src="reactjs16.2.0/immutable.min.js"></script>
+		2.看一下常规的写法可能对state和nextState带来的问题:
+		const x = { foo: 'bar' };
+		const y = x;
+		y.foo = 'baz';
+		//===代表值和类型同时比对
+		x === y; // true
+		-------------------------------------------------------
+		另一个例子:
+		var data=this.state.data;
+    	data.times = data.times + 1;
+    	this.setState({ data: data });
+    	//下面打印的结果会是已经加 1 后的值。
+    	console.log(this.state.data.times);
+		上面的操作直接改变了this.state.data的值，
+		所以在shouldComponentUpdate中nextState.data和this.state.data其实是同一个对象
+		-------------------------------------------------------
+		使用immutable.js解决
+		var SomeRecord = Immutable.Record({ foo: null });
+		var x = new SomeRecord({ foo: 'bar' });
+		var y = x.set('foo', 'baz');
+		var z = x.set('foo', 'bar');
+		x === y; // false
+		x === z; // true
+  -->
+  </body>
+</html>

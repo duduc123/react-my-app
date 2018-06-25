@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React</title>
+    <script src="reactjs16.2.0/react.development.js"></script>
+    <script src="reactjs16.2.0/react-dom.development.js"></script>
+    <script src="reactjs16.2.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+		/*
+		在React中，<input type =“file”/>总是一个不受控制的组件，因为它的值只能由用户设置，而不是以编程方式设置。
+		*/
+		class FileInput extends React.Component{
+		  constructor(props){
+			super(props);
+			this.handleSubmit=this.handleSubmit.bind(this);
+		  }
+		  handleSubmit(event){
+			event.preventDefault();
+			{/*注意单引号的区别`正确而'无效果*/}
+			alert(`上传文件 - ${this.fileInput.files[0].name}`);
+		  }
+		  render(){
+			return(
+			  <form onSubmit={this.handleSubmit}>
+				<label>文件上传:<input type="file" ref={input=>{this.fileInput = input;}}/></label>
+				<br />
+				<button type="submit">Submit</button>
+			  </form>
+			);
+		  }
+		}
+		ReactDOM.render(
+		  <FileInput />,
+		  document.getElementById('example')
+		);
+    </script>
+  </body>
+</html>

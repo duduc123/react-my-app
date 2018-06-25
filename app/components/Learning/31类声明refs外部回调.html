@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React</title>
+    <script src="reactjs16.2.0/react.development.js"></script>
+    <script src="reactjs16.2.0/react-dom.development.js"></script>
+    <script src="reactjs16.2.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+		/*
+		在典型的React数据流中，道具是父组件与子项交互的唯一方式。
+		要修改一个孩子，需要用新的道具重新渲染它。
+		但是，在少数情况下，需要在典型数据流之外强制修改子级
+		对于refs有几个很好的用例：
+		•管理焦点，文本选择或媒体播放。
+		•触发必要的动画。
+		•与第三方DOM库集成。
+		*/
+		class CustomTextInput extends React.Component{
+		  constructor(props){
+			super(props);
+			this.focusTextInput=this.focusTextInput.bind(this);//绑定聚焦
+		  }
+		  focusTextInput(){
+			//使用DOM Api聚焦,textInput是一个允许用户在应用中通过键盘输入文本的基本组件
+			this.textInput.focus();
+		  }
+		  render(){
+			//使用`ref`回调来存储对文本输入DOM的引用
+			//最后一个控件引用"ref={(input)=>{this.textInput=input;}}"将被聚焦
+			return(
+			  <div>
+				<input type="text" ref={(input)=>{this.textInput=input;}} />
+				<input type="text" ref={(input)=>{this.textInput=input;}} />
+				<input type="button" value="输入框聚焦" onClick={this.focusTextInput}/>
+			  </div>
+			);
+		  }
+		}
+		ReactDOM.render(
+		  <CustomTextInput />,
+		  document.getElementById('example')
+		);
+    </script>
+  </body>
+</html>

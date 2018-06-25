@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React</title>
+    <script src="reactjs16.2.0/react.development.js"></script>
+    <script src="reactjs16.2.0/react-dom.development.js"></script>
+    <script src="reactjs16.2.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+		//渲染HTML标签(strings),在JSX里使用小写字母的标签名 
+		var myDivElement=<div>标签内容</div>;
+		ReactDOM.render(
+			myDivElement,
+			document.getElementById('example'));
+    </script>
+  </body>
+</html>

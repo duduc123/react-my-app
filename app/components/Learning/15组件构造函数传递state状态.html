@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React</title>
+    <script src="reactjs16.2.0/react.development.js"></script>
+    <script src="reactjs16.2.0/react-dom.development.js"></script>
+    <script src="reactjs16.2.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+		class Clock extends React.Component{
+		  //构造函数传递state状态
+		  constructor(props){
+			super(props);
+			this.state={date: new Date()};
+		  }
+		  render() {
+			return (
+			  <div>
+				<h1>Hello, world!</h1>
+				<h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+			  </div>
+			);
+		  }
+		}
+		function tick(){
+		  ReactDOM.render(
+			<Clock/>,
+			document.getElementById('example')
+		  );
+		}
+		//构造函数传递state，由于没有生命周期的控制，
+        // 所以该实例无法动态刷新,setInterval不能发挥刷新作用
+		setInterval(tick, 1000);
+    </script>
+  </body>
+</html>

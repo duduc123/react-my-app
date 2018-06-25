@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React</title>
+    <script src="reactjs16.2.0/react.development.js"></script>
+    <script src="reactjs16.2.0/react-dom.development.js"></script>
+    <script src="reactjs16.2.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+		var element = <Welcome name="老王" />;
+		
+		/*
+		组件让你可以将用户界面分成独立的，可重复使用的部分，并且可以独立思考每个部分。
+		从概念上讲，组件就像JavaScript函数一样。
+		接受任意输入（称为“道具”）并返回描述屏幕上应显示内容的React元素。
+		*/
+		function Welcome(props){
+  			return <h1>Hello, {props.name}</h1>;
+		}
+		
+		ReactDOM.render(
+		  element,
+		  document.getElementById('example')
+		);
+		
+		/*ES6定义
+		class Welcome extends React.Component{
+		  constructor(props){
+			super(props);
+		  }
+		  render(){
+			return <h1>Hello, {this.props.name}</h1>;
+		  }
+		}
+		
+		ReactDOM.render(
+		  <Welcome name='abc'/>,
+		  document.getElementById('example')
+		);
+		*/
+    </script>
+  </body>
+</html>

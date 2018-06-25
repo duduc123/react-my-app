@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React</title>
+    <script src="reactjs16.2.0/react.development.js"></script>
+    <script src="reactjs16.2.0/react-dom.development.js"></script>
+    <script src="reactjs16.2.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+		//jsx嵌入表达式
+		var user={
+		  firstName: '隔壁',
+		  lastName: '老王'
+		};
+		
+		function formatName(user){return user.firstName + ' ' + user.lastName;}
+
+		var element=(<h1>Hello, {formatName(user)}!</h1>);
+		/*更多元素定义方法
+		1.var element=(
+		  <h1 className="greeting">
+			Hello, world!
+		  </h1>
+		);
+		2.var element=React.createElement(
+		  'h1',
+		  {className: 'greeting'},
+		  'Hello, world!'
+		);
+		3.var element={
+		  type: 'h1',
+		  props: {
+			className: 'greeting',
+			children: 'Hello, world'
+		  }
+		};
+		*/
+		ReactDOM.render(
+		  element,
+		  document.getElementById('example')
+		);
+    </script>
+  </body>
+</html>

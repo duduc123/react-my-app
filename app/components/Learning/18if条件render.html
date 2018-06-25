@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React</title>
+    <script src="reactjs16.2.0/react.development.js"></script>
+    <script src="reactjs16.2.0/react-dom.development.js"></script>
+    <script src="reactjs16.2.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+		function UserGreeting(props) {
+		  return <h1>欢迎</h1>;
+		}
+		function GuestGreeting(props) {
+		  return <h1>登录</h1>;
+		}
+		function Greeting(props) {
+		  var isLoggedIn=props.isLoggedIn;
+		  if(isLoggedIn) return <UserGreeting />;
+		  else return <GuestGreeting />;
+		}
+		ReactDOM.render(
+		  <Greeting isLoggedIn={false} />,
+		  document.getElementById('example')
+		);
+    </script>
+  </body>
+</html>
