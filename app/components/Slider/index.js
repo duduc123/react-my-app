@@ -30,13 +30,21 @@ export default class Slider extends React.Component {
                             <i className="iconfont icon-coupons"></i>
                             <span>meal</span>
                         </li>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
                         <li>
                             <i className="iconfont icon-coupons"></i>
-                            <span>meal</span>
+                            <span>rice</span>
                         </li>
                         <li>
                             <i className="iconfont icon-coupons"></i>
-                            <span>meal</span>
+                            <span>rice</span>
+                        </li>
+                        <li>
+                            <i className="iconfont icon-coupons"></i>
+                            <span>rice</span>
                         </li>
                     </ul>
                 </div>
@@ -44,23 +52,15 @@ export default class Slider extends React.Component {
                     <ul>
                         <li>
                             <i className="iconfont icon-coupons"></i>
-                            <span>meal</span>
+                            <span>beaf</span>
                         </li>
                         <li>
                             <i className="iconfont icon-coupons"></i>
-                            <span>meal</span>
+                            <span>beaf</span>
                         </li>
                         <li>
                             <i className="iconfont icon-coupons"></i>
-                            <span>meal</span>
-                        </li>
-                        <li>
-                            <i className="iconfont icon-coupons"></i>
-                            <span>meal</span>
-                        </li>
-                        <li>
-                            <i className="iconfont icon-coupons"></i>
-                            <span>meal</span>
+                            <span>beaf</span>
                         </li>
                     </ul>
                 </div>
